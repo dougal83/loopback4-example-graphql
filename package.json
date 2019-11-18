@@ -1,0 +1,81 @@
+{
+  "name": "@loopback/example-todo-graphql",
+  "version": "1.9.0",
+  "description": "Tutorial example on how to build an application with LoopBack 4. Extended using graphql",
+  "main": "index.js",
+  "engines": {
+    "node": ">=8.9"
+  },
+  "author": "IBM Corp.",
+  "scripts": {
+    "build": "lb-tsc",
+    "build:watch": "lb-tsc --watch",
+    "clean": "lb-clean *example-todo*.tgz dist tsconfig.build.tsbuildinfo package",
+    "lint": "npm run prettier:check && npm run eslint",
+    "lint:fix": "npm run eslint:fix && npm run prettier:fix",
+    "prettier:cli": "lb-prettier \"**/*.ts\"",
+    "prettier:check": "npm run prettier:cli -- -l",
+    "prettier:fix": "npm run prettier:cli -- --write",
+    "eslint": "lb-eslint --report-unused-disable-directives .",
+    "eslint:fix": "npm run eslint -- --fix",
+    "pretest": "npm run build",
+    "test": "lb-mocha \"dist/__tests__/**/*.js\"",
+    "test:dev": "lb-mocha --allow-console-logs dist/__tests__/**/*.js && npm run posttest",
+    "verify": "npm pack && tar xf loopback-todo*.tgz && tree package && npm run clean",
+    "migrate": "node ./dist/migrate",
+    "prestart": "npm run build",
+    "start:api": "node .",
+    "start:graphql": "npx openapi-to-graphql --port=3001 http://localhost:3000/openapi.json",
+    "start": "concurrently \"npm run start:api\" \"wait-on http://localhost:3000/openapi.json && npm run start:graphql\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/strongloop/loopback-next.git",
+    "directory": "examples/todo"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@loopback/boot": "^1.5.11",
+    "@loopback/context": "^1.23.5",
+    "@loopback/core": "^1.10.7",
+    "@loopback/openapi-v3": "^1.10.1",
+    "@loopback/repository": "^1.15.4",
+    "@loopback/rest": "^1.23.0",
+    "@loopback/rest-explorer": "^1.4.4",
+    "@loopback/service-proxy": "^1.3.11",
+    "loopback-connector-rest": "^3.6.0",
+    "openapi-to-graphql-cli": "^1.6.2"
+  },
+  "devDependencies": {
+    "@loopback/build": "^2.0.16",
+    "@loopback/eslint-config": "^4.1.4",
+    "@loopback/http-caching-proxy": "^1.2.1",
+    "@loopback/testlab": "^1.9.4",
+    "@types/lodash": "^4.14.146",
+    "@types/node": "^10.17.5",
+    "@typescript-eslint/eslint-plugin": "^2.7.0",
+    "@typescript-eslint/parser": "^2.7.0",
+    "concurrently": "^5.0.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-eslint-plugin": "^2.1.0",
+    "eslint-plugin-mocha": "^6.2.1",
+    "lodash": "^4.17.15",
+    "typescript": "~3.7.2",
+    "wait-on": "^3.3.0"
+  },
+  "keywords": [
+    "loopback",
+    "LoopBack",
+    "example",
+    "tutorial",
+    "CRUD",
+    "models",
+    "todo",
+    "graphql"
+  ],
+  "gitHead": "7f0ae6ec124c19357c3016cd11f9bc9c739dffcb"
+}
