@@ -50,7 +50,7 @@
     "openapi-to-graphql-cli": "^1.6.2"
   },
   "devDependencies": {
-    "@loopback/build": "^2.0.16",
+    "@loopback/build": "^9.0.6",
     "@loopback/eslint-config": "^4.1.4",
     "@loopback/http-caching-proxy": "^1.2.1",
     "@loopback/testlab": "^1.9.4",
